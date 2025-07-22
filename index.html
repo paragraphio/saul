@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saul - AI-Native Legal Intelligence</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fafafa;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e5e5e5;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+        
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+        
+        .hero-text .description {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #000;
+            color: #fff;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            background: #333;
+            transform: translateY(-1px);
+        }
+        
+        .hero-visual {
+            background: #f1f5f9;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-visual h3 {
+            font-size: 1.5rem;
+            color: #000;
+            margin-bottom: 2rem;
+        }
+        
+        .process-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .process-step {
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            text-align: left;
+        }
+        
+        .step-number {
+            background: #000;
+            color: #fff;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 1rem;
+        }
+        
+        .step-text {
+            display: inline;
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #000;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+            text-align: left;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 6rem 0;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .benefits-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        
+        .benefits-list {
+            list-style: none;
+        }
+        
+        .benefits-list li {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 1.1rem;
+            color: #333;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .benefits-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .benefit-icon {
+            background: #000;
+            color: #fff;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        
+        .stats-box {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+        }
+        
+        .stats-box h3 {
+            font-size: 1.5rem;
+            color: #000;
+            margin-bottom: 2rem;
+        }
+        
+        .stat {
+            margin-bottom: 1.5rem;
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #000;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Newsletter Section */
+        .newsletter {
+            padding: 6rem 0;
+            background: #000;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .newsletter h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 3rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .newsletter-form {
+            max-width: 400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .newsletter input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 1px solid #333;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: #111;
+            color: #fff;
+            outline: none;
+        }
+        
+        .newsletter input::placeholder {
+            color: #666;
+        }
+        
+        .newsletter button {
+            padding: 1rem 2rem;
+            background: #fff;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .newsletter button:hover {
+            background: #f0f0f0;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 2rem 0;
+            background: #111;
+            color: #666;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .benefits-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-visual {
+                padding: 2rem;
+            }
+        }
+        .hero-bg-visual {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.18;
+            animation: bg-float 18s linear infinite alternate;
+        }
+        @keyframes bg-float {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(-30px) scale(1.03); }
+        }
+        /* Animate document nodes */
+        .pdf-node { animation: node-float1 7s ease-in-out infinite alternate; }
+        .excel-node { animation: node-float2 9s ease-in-out infinite alternate; }
+        .word-node { animation: node-float3 8s ease-in-out infinite alternate; }
+        .generic-node1 { animation: node-float4 10s ease-in-out infinite alternate; }
+        .generic-node2 { animation: node-float5 11s ease-in-out infinite alternate; }
+        @keyframes node-float1 { 0%{transform:translateY(0);} 100%{transform:translateY(-18px);} }
+        @keyframes node-float2 { 0%{transform:translateY(0);} 100%{transform:translateY(22px);} }
+        @keyframes node-float3 { 0%{transform:translateY(0);} 100%{transform:translateY(-12px);} }
+        @keyframes node-float4 { 0%{transform:translateY(0);} 100%{transform:translateY(15px);} }
+        @keyframes node-float5 { 0%{transform:translateY(0);} 100%{transform:translateY(-10px);} }
+        @media (max-width: 768px) {
+            .hero-bg-visual { display: none; }
+        }
+
+        /* Demo Animations */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        /* Table Styles */
+        .contract-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .contract-table th,
+        .contract-table td {
+            padding: 0.8rem;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .contract-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #333;
+            position: sticky;
+            top: 0;
+        }
+
+        .contract-table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .status-active { color: #22c55e; font-weight: 600; }
+        .status-expired { color: #e11d48; font-weight: 600; }
+        .status-pending { color: #f59e0b; font-weight: 600; }
+
+        .table-search {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-bottom: 2px solid #e9ecef;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .table-search:focus {
+            border-bottom-color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="hero-bg-visual" style="right:-15vw;left:auto;width:90vw;min-width:900px;max-width:1800px;top:0;height:110vh;opacity:0.25;filter:none;">
+            <svg width="100%" height="100%" viewBox="200 0 900 700" fill="none" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;right:0;width:100%;height:100%;z-index:0;">
+                <!-- Edges -->
+                <line x1="200" y1="200" x2="400" y2="100" stroke="#2563eb" stroke-width="3"/>
+                <line x1="400" y1="100" x2="650" y2="250" stroke="#22c55e" stroke-width="3"/>
+                <line x1="200" y1="200" x2="350" y2="400" stroke="#e11d48" stroke-width="3"/>
+                <line x1="650" y1="250" x2="500" y2="400" stroke="#a3a3a3" stroke-width="3"/>
+                <line x1="350" y1="400" x2="500" y2="400" stroke="#2563eb" stroke-width="3"/>
+                <!-- New edges for more nodes -->
+                <line x1="400" y1="100" x2="550" y2="60" stroke="#e11d48" stroke-width="2.5"/>
+                <line x1="650" y1="250" x2="600" y2="350" stroke="#22c55e" stroke-width="2.5"/>
+                <line x1="600" y1="350" x2="500" y2="400" stroke="#a3a3a3" stroke-width="2.5"/>
+                <line x1="350" y1="400" x2="300" y2="500" stroke="#2563eb" stroke-width="2.5"/>
+                <line x1="500" y1="400" x2="600" y2="500" stroke="#e11d48" stroke-width="2.5"/>
+                <line x1="600" y1="350" x2="600" y2="500" stroke="#22c55e" stroke-width="2.5"/>
+                <line x1="200" y1="200" x2="120" y2="320" stroke="#a3a3a3" stroke-width="2.5"/>
+                <line x1="120" y1="320" x2="300" y2="500" stroke="#e11d48" stroke-width="2.5"/>
+                <!-- Even more edges for density -->
+                <line x1="550" y1="60" x2="650" y2="250" stroke="#e11d48" stroke-width="2"/>
+                <line x1="550" y1="60" x2="600" y2="350" stroke="#2563eb" stroke-width="2"/>
+                <line x1="600" y1="500" x2="650" y2="250" stroke="#22c55e" stroke-width="2"/>
+                <line x1="600" y1="500" x2="350" y2="400" stroke="#a3a3a3" stroke-width="2"/>
+                <line x1="600" y1="500" x2="300" y2="500" stroke="#e11d48" stroke-width="2"/>
+                <line x1="300" y1="500" x2="120" y2="320" stroke="#2563eb" stroke-width="2"/>
+                <line x1="300" y1="500" x2="200" y2="200" stroke="#22c55e" stroke-width="2"/>
+                <line x1="120" y1="320" x2="400" y2="100" stroke="#a3a3a3" stroke-width="2"/>
+                <line x1="600" y1="350" x2="700" y2="150" stroke="#22c55e" stroke-width="2"/>
+                <line x1="700" y1="150" x2="650" y2="250" stroke="#e11d48" stroke-width="2"/>
+                <line x1="700" y1="150" x2="600" y2="500" stroke="#2563eb" stroke-width="2"/>
+                <line x1="700" y1="150" x2="550" y2="60" stroke="#a3a3a3" stroke-width="2"/>
+                <line x1="700" y1="150" x2="500" y2="400" stroke="#e11d48" stroke-width="2"/>
+                <!-- PDF Nodes -->
+                <g class="doc-node pdf-node">
+                    <circle cx="200" cy="200" r="38" fill="#fff" stroke="#e11d48" stroke-width="4"/>
+                    <rect x="182" y="180" width="36" height="44" rx="6" fill="#fef2f2" stroke="#e11d48" stroke-width="2"/>
+                    <text x="200" y="210" text-anchor="middle" font-size="16" font-family="Arial" fill="#e11d48" font-weight="bold">PDF</text>
+                </g>
+                <g class="doc-node pdf-node">
+                    <circle cx="550" cy="60" r="24" fill="#fff" stroke="#e11d48" stroke-width="3"/>
+                    <rect x="538" y="48" width="24" height="28" rx="4" fill="#fef2f2" stroke="#e11d48" stroke-width="1.5"/>
+                    <text x="550" y="68" text-anchor="middle" font-size="11" font-family="Arial" fill="#e11d48" font-weight="bold">PDF</text>
+                </g>
+                <g class="doc-node pdf-node">
+                    <circle cx="700" cy="150" r="20" fill="#fff" stroke="#e11d48" stroke-width="2.5"/>
+                    <rect x="690" y="140" width="18" height="20" rx="3" fill="#fef2f2" stroke="#e11d48" stroke-width="1"/>
+                    <text x="700" y="155" text-anchor="middle" font-size="9" font-family="Arial" fill="#e11d48" font-weight="bold">PDF</text>
+                </g>
+                <!-- XLS Nodes -->
+                <g class="doc-node excel-node">
+                    <circle cx="650" cy="250" r="38" fill="#fff" stroke="#22c55e" stroke-width="4"/>
+                    <rect x="632" y="230" width="36" height="44" rx="6" fill="#f0fdf4" stroke="#22c55e" stroke-width="2"/>
+                    <text x="650" y="260" text-anchor="middle" font-size="16" font-family="Arial" fill="#22c55e" font-weight="bold">XLS</text>
+                </g>
+                <g class="doc-node excel-node">
+                    <circle cx="600" cy="350" r="24" fill="#fff" stroke="#22c55e" stroke-width="3"/>
+                    <rect x="588" y="338" width="24" height="28" rx="4" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5"/>
+                    <text x="600" y="360" text-anchor="middle" font-size="11" font-family="Arial" fill="#22c55e" font-weight="bold">XLS</text>
+                </g>
+                <g class="doc-node excel-node">
+                    <circle cx="300" cy="500" r="16" fill="#fff" stroke="#22c55e" stroke-width="2"/>
+                    <rect x="292" y="492" width="14" height="16" rx="2" fill="#f0fdf4" stroke="#22c55e" stroke-width="1"/>
+                    <text x="300" y="504" text-anchor="middle" font-size="8" font-family="Arial" fill="#22c55e" font-weight="bold">XLS</text>
+                </g>
+                <!-- DOC Nodes -->
+                <g class="doc-node word-node">
+                    <circle cx="400" cy="100" r="38" fill="#fff" stroke="#2563eb" stroke-width="4"/>
+                    <rect x="382" y="80" width="36" height="44" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+                    <text x="400" y="110" text-anchor="middle" font-size="16" font-family="Arial" fill="#2563eb" font-weight="bold">DOC</text>
+                </g>
+                <g class="doc-node word-node">
+                    <circle cx="600" cy="500" r="24" fill="#fff" stroke="#2563eb" stroke-width="3"/>
+                    <rect x="588" y="488" width="24" height="28" rx="4" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+                    <text x="600" y="510" text-anchor="middle" font-size="11" font-family="Arial" fill="#2563eb" font-weight="bold">DOC</text>
+                </g>
+                <g class="doc-node word-node">
+                    <circle cx="120" cy="320" r="14" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+                    <rect x="114" y="314" width="12" height="12" rx="2" fill="#eff6ff" stroke="#2563eb" stroke-width="1"/>
+                    <text x="120" y="324" text-anchor="middle" font-size="7" font-family="Arial" fill="#2563eb" font-weight="bold">DOC</text>
+                </g>
+                <!-- Generic Nodes -->
+                <g class="doc-node generic-node1">
+                    <circle cx="350" cy="400" r="28" fill="#fff" stroke="#a3a3a3" stroke-width="3"/>
+                </g>
+                <g class="doc-node generic-node2">
+                    <circle cx="500" cy="400" r="28" fill="#fff" stroke="#a3a3a3" stroke-width="3"/>
+                </g>
+                <g class="doc-node generic-node3">
+                    <circle cx="300" cy="500" r="20" fill="#fff" stroke="#a3a3a3" stroke-width="2.5"/>
+                </g>
+                <g class="doc-node generic-node4">
+                    <circle cx="120" cy="320" r="18" fill="#fff" stroke="#a3a3a3" stroke-width="2.5"/>
+                </g>
+                <g class="doc-node generic-node5">
+                    <circle cx="600" cy="200" r="18" fill="#fff" stroke="#a3a3a3" stroke-width="2.5"/>
+                </g>
+                <g class="doc-node generic-node6">
+                    <circle cx="480" cy="250" r="14" fill="#fff" stroke="#a3a3a3" stroke-width="2"/>
+                </g>
+                <g class="doc-node generic-node7">
+                    <circle cx="420" cy="300" r="12" fill="#fff" stroke="#a3a3a3" stroke-width="2"/>
+                </g>
+                <g class="doc-node generic-node8">
+                    <circle cx="570" cy="420" r="16" fill="#fff" stroke="#a3a3a3" stroke-width="2"/>
+                </g>
+            </svg>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 style="font-size:2.5rem;line-height:1.15;">Saul is the brain that brings order to legal chaos.</h1>
+                    <p class="subtitle" style="font-size:1.2rem;">Not just a tool—Saul connects, understands, and answers. Instantly. No change to how you work.</p>
+                    <a href="#newsletter" class="cta-button">Join Saul Early Access</a>
+                </div>
+                <div class="hero-visual">
+                    <h3 style="font-size:1.2rem;margin-bottom:1.5rem;">How it works</h3>
+                    <div class="process-flow">
+                        <div class="process-step">
+                            <span class="step-number">1</span>
+                            <span class="step-text">Just connect your data sources</span>
+                        </div>
+                        <div class="process-step">
+                            <span class="step-number">2</span>
+                            <span class="step-text">Saul auto-builds your legal brain</span>
+                        </div>
+                        <div class="process-step">
+                            <span class="step-number">3</span>
+                            <span class="step-text">Start asking questions and saving time</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo" style="padding: 6rem 0; background: #f8f9fa; border-bottom: 1px solid #e5e5e5;">
+        <div class="container">
+            <h2 class="section-title">See Saul in action</h2>
+            <p class="section-subtitle">
+                Experience how Saul transforms your legal documents into an intelligent knowledge graph
+            </p>
+            
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <button id="tryMeBtn" class="cta-button" style="font-size: 1.1rem; padding: 1.2rem 3rem;">
+                    Try Me - Connect Sample Data
+                </button>
+            </div>
+
+            <!-- Connection Animation -->
+            <div id="connectionStage" style="display: none; text-align: center; margin: 3rem 0;">
+                <div style="background: #fff; border-radius: 12px; padding: 3rem; border: 1px solid #e9ecef; max-width: 600px; margin: 0 auto;">
+                    <div class="connection-spinner" style="width: 60px; height: 60px; border: 4px solid #f3f3f3; border-top: 4px solid #2563eb; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1.5rem;"></div>
+                    <h3 id="connectionText" style="color: #2563eb; margin-bottom: 1rem;">Connecting to Google Drive...</h3>
+                    <p id="connectionSubtext" style="color: #666;">Scanning documents and building knowledge graph</p>
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div id="resultsSection" style="display: none;">
+                <!-- Knowledge Graph -->
+                <div style="margin-bottom: 4rem;">
+                    <h3 style="font-size: 1.8rem; color: #000; margin-bottom: 2rem; text-align: center;">Document Relationship Graph</h3>
+                    <div style="background: #fff; border-radius: 12px; padding: 2rem; border: 1px solid #e9ecef;">
+                        <canvas id="graphCanvas" width="800" height="400" style="width: 100%; max-width: 800px; height: 400px; display: block; margin: 0 auto;"></canvas>
+                        <div style="margin-top: 1rem; text-align: center; color: #666; font-size: 0.9rem;">
+                            Interactive graph showing relationships between contracts, amendments, and schedules
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contract Tables -->
+                <div>
+                    <h3 style="font-size: 1.8rem; color: #000; margin-bottom: 2rem; text-align: center;">Smart Contract Analysis</h3>
+                    
+                    <!-- Table Selector -->
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <select id="tableSelector" style="padding: 0.5rem 1rem; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem;">
+                            <option value="nda">NDAs Analysis</option>
+                            <option value="ip">IP Licensing Contracts</option>
+                            <option value="commercial">Commercial Licensing</option>
+                        </select>
+                    </div>
+
+                    <!-- Table Container -->
+                    <div id="tableContainer" style="background: #fff; border-radius: 12px; border: 1px solid #e9ecef; overflow: hidden;">
+                        <!-- Tables will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Stop being an internal search engine</h2>
+            <p class="section-subtitle">
+                Saul understands every relationship in your contracts—parties, clauses, matters, and obligations—without changing how you work.
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Zero onboarding friction</h3>
+                    <p>Connect to existing storage systems and get value in under an hour. No document migration, template libraries, or lengthy setup processes required.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Relationship-aware intelligence</h3>
+                    <p>Our knowledge graph automatically links documents, clauses, parties, and matters—revealing hidden dependencies across your entire legal universe.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Matter-level insights</h3>
+                    <p>Ask "Show me every document in the Acme Acquisition with uncapped liability" and get precise answers, not file lists to search through.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Passive process tracking</h3>
+                    <p>Automatic renewal alerts, obligation monitoring, and risk detection—all derived from graph relationships, not manual data entry.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Context-aware review</h3>
+                    <p>Spot deviations from your standards, find relevant precedents, and understand cross-document impacts with full contract history context.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Works where you work</h3>
+                    <p>Slack, Outlook, and existing drives take precedence over new portals. Get answers without leaving your current workflow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <div class="benefits-content">
+                <div>
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 2rem;">The legal brain your team deserves</h2>
+                    <ul class="benefits-list">
+                        <li>
+                            <span class="benefit-icon">✓</span>
+                            <span>AI never sleeps. Saul never gets backlogged.</span>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">✓</span>
+                            <span>Answers over files—fewer PDF downloads, more insights.</span>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">✓</span>
+                            <span>Structure as a byproduct—metadata generated automatically.</span>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">✓</span>
+                            <span>Wherever you work, Saul fits right in.</span>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">✓</span>
+                            <span>Every answer backed by explicit graph relationships.</span>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">✓</span>
+                            <span>Evolves with your questions—no re-implementation needed.</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="stats-box">
+                    <h3>Speed to intelligence</h3>
+                    <div class="stat">
+                        <span class="stat-number">&lt;1hr</span>
+                        <span class="stat-label">Time to first answer</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">90%+</span>
+                        <span class="stat-label">Extraction precision</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">80%</span>
+                        <span class="stat-label">Less search time</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">0</span>
+                        <span class="stat-label">Missed renewals</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="newsletter" class="newsletter">
+        <div class="container">
+            <h2>Be first to experience the future</h2>
+            <p>Join our early access program and help shape the AI-native legal intelligence platform.</p>
+            
+            <form class="newsletter-form" id="newsletter-form">
+                <input type="email" placeholder="Enter your email" required id="email-input">
+                <button type="submit">Join Early Access</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Saul Legal Intelligence. Transforming contracts into knowledge.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Newsletter form handling
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email-input').value;
+            const button = this.querySelector('button');
+            const originalText = button.textContent;
+            
+            // Simple email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Simulate form submission
+            button.textContent = 'Joining...';
+            button.style.background = '#ccc';
+            
+            setTimeout(() => {
+                button.textContent = 'Joined ✓';
+                button.style.background = '#4ade80';
+                document.getElementById('email-input').value = '';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '#fff';
+                }, 3000);
+            }, 1500);
+        });
+
+        // Demo functionality
+        document.getElementById('tryMeBtn').addEventListener('click', function() {
+            const button = this;
+            const connectionStage = document.getElementById('connectionStage');
+            const resultsSection = document.getElementById('resultsSection');
+            const connectionText = document.getElementById('connectionText');
+            const connectionSubtext = document.getElementById('connectionSubtext');
+            
+            // Hide button and show connection stage
+            button.style.display = 'none';
+            connectionStage.style.display = 'block';
+            connectionStage.classList.add('fade-in');
+            
+            // Simulate connection steps
+            setTimeout(() => {
+                connectionText.textContent = 'Analyzing document structure...';
+                connectionSubtext.textContent = 'Found 47 contracts, 12 amendments, 8 schedules';
+            }, 1500);
+            
+            setTimeout(() => {
+                connectionText.textContent = 'Building knowledge graph...';
+                connectionSubtext.textContent = 'Mapping relationships and dependencies';
+            }, 3000);
+            
+            setTimeout(() => {
+                connectionText.textContent = 'Extracting key insights...';
+                connectionSubtext.textContent = 'Ready to analyze your legal universe';
+            }, 4500);
+            
+            setTimeout(() => {
+                connectionStage.style.display = 'none';
+                resultsSection.style.display = 'block';
+                resultsSection.classList.add('fade-in');
+                drawKnowledgeGraph();
+                loadContractTable('nda');
+            }, 6000);
+        });
+
+        // Knowledge Graph Drawing
+        function drawKnowledgeGraph() {
+            const canvas = document.getElementById('graphCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas size
+            canvas.width = 800;
+            canvas.height = 400;
+            
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // Define nodes based on actual contracts with realistic relationships
+            const nodes = [
+                // AlphaByte-Vertex Matter (Software Development Transaction)
+                { id: 'alphabyte-msa', x: 150, y: 120, type: 'contract', label: 'AlphaByte MSA', color: '#2563eb', size: 20 },
+                { id: 'alphabyte-sow', x: 250, y: 80, type: 'contract', label: 'Dev SOW', color: '#2563eb', size: 18 },
+                { id: 'alphabyte-ip', x: 200, y: 180, type: 'schedule', label: 'IP Schedule', color: '#22c55e', size: 16 },
+                { id: 'alphabyte-nda', x: 100, y: 200, type: 'contract', label: 'ABC-XYZ NDA', color: '#8b5cf6', size: 16 },
+                
+                // CloudTech SaaS Matter (Cloud Services Transaction)
+                { id: 'cloudtech-saas', x: 400, y: 100, type: 'contract', label: 'CloudTech SaaS', color: '#2563eb', size: 20 },
+                { id: 'cloudtech-sla', x: 450, y: 160, type: 'schedule', label: 'SLA Annex', color: '#22c55e', size: 16 },
+                { id: 'cloudtech-dpa', x: 350, y: 160, type: 'contract', label: 'DPA Agreement', color: '#e11d48', size: 16 },
+                { id: 'cloudtech-amendment', x: 400, y: 50, type: 'contract', label: 'Amendment #1', color: '#f59e0b', size: 14 },
+                
+                // Nordic-Scanditech Matter (Acquisition Due Diligence)
+                { id: 'nordic-nda', x: 600, y: 120, type: 'contract', label: 'Nordic NDA', color: '#8b5cf6', size: 18 },
+                { id: 'nordic-loi', x: 650, y: 80, type: 'contract', label: 'Letter of Intent', color: '#2563eb', size: 16 },
+                { id: 'nordic-dd-list', x: 700, y: 160, type: 'schedule', label: 'DD Checklist', color: '#22c55e', size: 14 },
+                
+                // Multi-Party Acquisition Matter
+                { id: 'twitter-nda', x: 150, y: 300, type: 'contract', label: 'Twitter NDA', color: '#8b5cf6', size: 18 },
+                { id: 'disney-acquisition', x: 250, y: 280, type: 'contract', label: 'Disney Acq Docs', color: '#2563eb', size: 20 },
+                { id: 'walt-dreams-nda', x: 350, y: 320, type: 'contract', label: 'Walt Dreams NDA', color: '#8b5cf6', size: 16 },
+                { id: 'pizzar-side-letter', x: 300, y: 360, type: 'contract', label: 'Pizzar Side Letter', color: '#f59e0b', size: 14 },
+                
+                // TechNova-InnovateSoft Matter (Software Licensing)
+                { id: 'technova-license', x: 500, y: 280, type: 'contract', label: 'TechNova License', color: '#2563eb', size: 18 },
+                { id: 'technova-support', x: 550, y: 330, type: 'contract', label: 'Support Agreement', color: '#2563eb', size: 16 },
+                { id: 'technova-escrow', x: 450, y: 330, type: 'schedule', label: 'Escrow Terms', color: '#22c55e', size: 14 },
+                
+                // Giraffe-Elefant Matter (Business Partnership)
+                { id: 'giraffe-nda', x: 650, y: 300, type: 'contract', label: 'Giraffe NDA', color: '#8b5cf6', size: 16 },
+                { id: 'amalfi-partnership', x: 700, y: 260, type: 'contract', label: 'Amalfi Partnership', color: '#2563eb', size: 18 },
+                { id: 'territory-schedule', x: 750, y: 320, type: 'schedule', label: 'Territory Sched', color: '#22c55e', size: 14 }
+            ];
+            
+            // Define relationships with different types and visual styles
+            const relationships = [
+                // AlphaByte-Vertex Matter Relationships
+                { from: 'alphabyte-sow', to: 'alphabyte-msa', type: 'REFERENCES', color: '#6b7280', dash: false, weight: 2 },
+                { from: 'alphabyte-msa', to: 'alphabyte-ip', type: 'SCHEDULE_TO', color: '#22c55e', dash: false, weight: 3 },
+                { from: 'alphabyte-nda', to: 'alphabyte-msa', type: 'ASSOCIATED_WITH', color: '#8b5cf6', dash: true, weight: 2 },
+                { from: 'alphabyte-sow', to: 'alphabyte-ip', type: 'REFERENCES', color: '#6b7280', dash: false, weight: 1 },
+                
+                // CloudTech SaaS Matter Relationships
+                { from: 'cloudtech-amendment', to: 'cloudtech-saas', type: 'AMENDS', color: '#f59e0b', dash: false, weight: 3 },
+                { from: 'cloudtech-saas', to: 'cloudtech-sla', type: 'SCHEDULE_TO', color: '#22c55e', dash: false, weight: 3 },
+                { from: 'cloudtech-saas', to: 'cloudtech-dpa', type: 'REFERENCES', color: '#e11d48', dash: false, weight: 2 },
+                { from: 'cloudtech-dpa', to: 'cloudtech-sla', type: 'ASSOCIATED_WITH', color: '#6b7280', dash: true, weight: 1 },
+                
+                // Nordic-Scanditech Matter Relationships
+                { from: 'nordic-loi', to: 'nordic-nda', type: 'REFERENCES', color: '#6b7280', dash: false, weight: 2 },
+                { from: 'nordic-nda', to: 'nordic-dd-list', type: 'SCHEDULE_TO', color: '#22c55e', dash: false, weight: 2 },
+                
+                // Multi-Party Acquisition Matter (Disney Deal)
+                { from: 'twitter-nda', to: 'disney-acquisition', type: 'ASSOCIATED_WITH', color: '#8b5cf6', dash: true, weight: 2 },
+                { from: 'walt-dreams-nda', to: 'disney-acquisition', type: 'ASSOCIATED_WITH', color: '#8b5cf6', dash: true, weight: 2 },
+                { from: 'disney-acquisition', to: 'pizzar-side-letter', type: 'SCHEDULE_TO', color: '#22c55e', dash: false, weight: 2 },
+                { from: 'twitter-nda', to: 'walt-dreams-nda', type: 'CROSS_REFERENCE', color: '#d97706', dash: true, weight: 1 },
+                
+                // TechNova-InnovateSoft Matter Relationships
+                { from: 'technova-license', to: 'technova-support', type: 'ASSOCIATED_WITH', color: '#6b7280', dash: true, weight: 2 },
+                { from: 'technova-license', to: 'technova-escrow', type: 'SCHEDULE_TO', color: '#22c55e', dash: false, weight: 2 },
+                { from: 'technova-support', to: 'technova-escrow', type: 'REFERENCES', color: '#6b7280', dash: false, weight: 1 },
+                
+                // Giraffe-Elefant Matter Relationships
+                { from: 'giraffe-nda', to: 'amalfi-partnership', type: 'ASSOCIATED_WITH', color: '#8b5cf6', dash: true, weight: 2 },
+                { from: 'amalfi-partnership', to: 'territory-schedule', type: 'SCHEDULE_TO', color: '#22c55e', dash: false, weight: 2 },
+                
+                // Cross-Matter References (realistic scenario)
+                { from: 'alphabyte-msa', to: 'technova-license', type: 'PRECEDENT', color: '#94a3b8', dash: true, weight: 1 },
+                { from: 'cloudtech-saas', to: 'technova-license', type: 'SIMILAR_TERMS', color: '#94a3b8', dash: true, weight: 1 },
+                { from: 'nordic-nda', to: 'giraffe-nda', type: 'TEMPLATE_BASED', color: '#cbd5e1', dash: true, weight: 1 }
+            ];
+            
+            // Draw relationships first (so they appear behind nodes)
+            relationships.forEach(rel => {
+                const fromNode = nodes.find(n => n.id === rel.from);
+                const toNode = nodes.find(n => n.id === rel.to);
+                
+                if (!fromNode || !toNode) return;
+                
+                ctx.strokeStyle = rel.color;
+                ctx.lineWidth = rel.weight;
+                ctx.globalAlpha = 0.8;
+                
+                if (rel.dash) {
+                    ctx.setLineDash([5, 3]);
+                } else {
+                    ctx.setLineDash([]);
+                }
+                
+                ctx.beginPath();
+                ctx.moveTo(fromNode.x, fromNode.y);
+                ctx.lineTo(toNode.x, toNode.y);
+                ctx.stroke();
+                
+                // Draw arrow for directed relationships
+                if (['AMENDS', 'REFERENCES', 'SCHEDULE_TO'].includes(rel.type)) {
+                    const angle = Math.atan2(toNode.y - fromNode.y, toNode.x - fromNode.x);
+                    const arrowLength = 8;
+                    const distance = toNode.size + 5;
+                    
+                    const arrowX = toNode.x - distance * Math.cos(angle);
+                    const arrowY = toNode.y - distance * Math.sin(angle);
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(arrowX, arrowY);
+                    ctx.lineTo(
+                        arrowX - arrowLength * Math.cos(angle - Math.PI/6),
+                        arrowY - arrowLength * Math.sin(angle - Math.PI/6)
+                    );
+                    ctx.moveTo(arrowX, arrowY);
+                    ctx.lineTo(
+                        arrowX - arrowLength * Math.cos(angle + Math.PI/6),
+                        arrowY - arrowLength * Math.sin(angle + Math.PI/6)
+                    );
+                    ctx.stroke();
+                }
+            });
+            
+            ctx.globalAlpha = 1.0;
+            ctx.setLineDash([]);
+            
+            // Draw matter groupings (background circles)
+            const matters = [
+                { x: 175, y: 150, radius: 80, label: 'AlphaByte Dev Matter', color: '#dbeafe' },
+                { x: 400, y: 130, radius: 70, label: 'CloudTech SaaS Matter', color: '#dcfce7' },
+                { x: 650, y: 120, radius: 60, label: 'Nordic Acquisition', color: '#fef3c7' },
+                { x: 275, y: 320, radius: 90, label: 'Disney Acquisition Matter', color: '#fce7f3' },
+                { x: 500, y: 310, radius: 65, label: 'TechNova Licensing', color: '#e0e7ff' },
+                { x: 700, y: 290, radius: 55, label: 'Amalfi Partnership', color: '#f3e8ff' }
+            ];
+            
+            matters.forEach(matter => {
+                ctx.fillStyle = matter.color;
+                ctx.globalAlpha = 0.3;
+                ctx.beginPath();
+                ctx.arc(matter.x, matter.y, matter.radius, 0, 2 * Math.PI);
+                ctx.fill();
+                
+                ctx.globalAlpha = 0.6;
+                ctx.strokeStyle = matter.color.replace('f', 'a');
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                
+                // Matter label
+                ctx.globalAlpha = 0.7;
+                ctx.fillStyle = '#374151';
+                ctx.font = '10px -apple-system, BlinkMacSystemFont, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(matter.label, matter.x, matter.y + matter.radius + 15);
+            });
+            
+            ctx.globalAlpha = 1.0;
+            
+            // Draw nodes
+            nodes.forEach(node => {
+                // Node circle with size variation
+                ctx.fillStyle = node.color;
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, node.size, 0, 2 * Math.PI);
+                ctx.fill();
+                
+                // Node border
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // Inner highlight for contracts
+                if (node.type === 'contract') {
+                    ctx.strokeStyle = node.color;
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.arc(node.x, node.y, node.size - 4, 0, 2 * Math.PI);
+                    ctx.stroke();
+                }
+                
+                // Node label
+                ctx.fillStyle = '#1f2937';
+                ctx.font = '11px -apple-system, BlinkMacSystemFont, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(node.label, node.x, node.y + node.size + 18);
+            });
+            
+            // Legend
+            const legendX = 20;
+            const legendY = 20;
+            
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.fillRect(legendX, legendY, 200, 120);
+            ctx.strokeStyle = '#e5e7eb';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(legendX, legendY, 200, 120);
+            
+            ctx.fillStyle = '#374151';
+            ctx.font = 'bold 12px -apple-system, BlinkMacSystemFont, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.fillText('Relationship Types:', legendX + 10, legendY + 20);
+            
+            const legendItems = [
+                { color: '#f59e0b', dash: false, label: 'AMENDS', y: 35 },
+                { color: '#22c55e', dash: false, label: 'SCHEDULE_TO', y: 50 },
+                { color: '#6b7280', dash: false, label: 'REFERENCES', y: 65 },
+                { color: '#8b5cf6', dash: true, label: 'ASSOCIATED_WITH', y: 80 },
+                { color: '#94a3b8', dash: true, label: 'PRECEDENT/SIMILAR', y: 95 }
+            ];
+            
+            legendItems.forEach(item => {
+                ctx.strokeStyle = item.color;
+                ctx.lineWidth = 2;
+                if (item.dash) {
+                    ctx.setLineDash([3, 2]);
+                } else {
+                    ctx.setLineDash([]);
+                }
+                ctx.beginPath();
+                ctx.moveTo(legendX + 10, legendY + item.y);
+                ctx.lineTo(legendX + 30, legendY + item.y);
+                ctx.stroke();
+                
+                ctx.fillStyle = '#374151';
+                ctx.font = '10px -apple-system, BlinkMacSystemFont, sans-serif';
+                ctx.fillText(item.label, legendX + 35, legendY + item.y + 3);
+            });
+            
+            ctx.setLineDash([]);
+        }
+
+        // Contract Table Data - Using real CSV data
+        const contractData = {
+            nda: [
+                { 
+                    contract: 'X Twitter Company & Y online GmbH NDA', 
+                    parties: 'X Twitter Company, Y Online GmbH', 
+                    signed: '2025-03-08', 
+                    expires: '2027-03-08', 
+                    status: 'Active', 
+                    dispute: 'Arbitration',
+                    governing_law: 'Germany',
+                    confidential_info: 'Technical/commercial data, documentation, knowledge related to Walt Disney acquisition',
+                    assignment: 'Yes',
+                    destruction: 'Yes'
+                },
+                { 
+                    contract: 'Walt Dreams & Pizzar NDA', 
+                    parties: 'Walt Dreams Inc, Pizzar Inc', 
+                    signed: '2024-03-23', 
+                    expires: '2026-03-23', 
+                    status: 'Active', 
+                    dispute: 'Courts',
+                    governing_law: 'Australian Capital Territory',
+                    confidential_info: 'Information by nature confidential, designated confidential, or reasonably known to be confidential',
+                    assignment: 'No',
+                    destruction: 'Yes'
+                },
+                { 
+                    contract: 'Nordic Innovations & Scanditech NDA', 
+                    parties: 'Nordic Innovations AB, Scanditech Solutions OY', 
+                    signed: '2025-03-07', 
+                    expires: '2028-03-07', 
+                    status: 'Active', 
+                    dispute: 'Arbitration',
+                    governing_law: 'Sweden',
+                    confidential_info: 'Non-public proprietary data, trade secrets, technical info, business strategies, financial data, IP',
+                    assignment: 'No',
+                    destruction: 'Yes'
+                },
+                { 
+                    contract: 'Giraffe SE & Elefant SE NDA', 
+                    parties: 'GIRAFFE SE, ELEFANT SE', 
+                    signed: '2025-03-07', 
+                    expires: '2027-03-07', 
+                    status: 'Active', 
+                    dispute: 'Courts',
+                    governing_law: 'Germany',
+                    confidential_info: 'Business info, internal processes, strategy, financial performance, transaction info, products, technology, IP',
+                    assignment: 'Yes',
+                    destruction: 'Yes'
+                },
+                { 
+                    contract: 'ABC Technologies & XYZ Solutions NDA', 
+                    parties: 'ABC Technologies Ltd., XYZ Solutions SARL', 
+                    signed: '2025-03-07', 
+                    expires: '2028-03-07', 
+                    status: 'Active', 
+                    dispute: 'Arbitration',
+                    governing_law: 'France',
+                    confidential_info: 'Non-public proprietary data, trade secrets, technical information, business strategies, financial data, IP, software, product designs',
+                    assignment: 'No',
+                    destruction: 'Yes'
+                }
+            ],
+            ip: [
+                { 
+                    contract: 'Flor SE Technology Services Agreement', 
+                    parties: 'Flor SE, Katrin B.V.', 
+                    signed: '2025-01-14', 
+                    expires: '2028-01-14', 
+                    status: 'Active',
+                    ip_ownership: 'All Work Product owned by Client upon full payment',
+                    scope: 'Limited access for evaluation of report with confidentiality obligations',
+                    liability_cap: 'N/A',
+                    payment_terms: '30 days',
+                    governing_law: 'California',
+                    dispute: 'Negotiation, Arbitration'
+                },
+                { 
+                    contract: 'CloudTech Solutions SaaS Agreement', 
+                    parties: 'CloudTech Solutions Ltd., DataFlow GmbH', 
+                    signed: '2025-03-01', 
+                    expires: '2026-03-01', 
+                    status: 'Active',
+                    ip_ownership: 'N/A',
+                    scope: 'Non-exclusive, non-transferable, limited right for business purposes',
+                    liability_cap: '€12,000.00',
+                    payment_terms: 'N/A',
+                    governing_law: 'Ireland',
+                    dispute: 'Arbitration'
+                },
+                { 
+                    contract: 'TechNova Software Agreement', 
+                    parties: 'TechNova Solutions GmbH, InnovateSoft Ltd.', 
+                    signed: '2025-03-01', 
+                    expires: '2030-03-01', 
+                    status: 'Active',
+                    ip_ownership: 'Licensor owns all IP rights, no rights transferred to Licensee',
+                    scope: 'Non-exclusive, non-transferable, non-sublicensable license for internal business operations',
+                    liability_cap: '€50,000.00',
+                    payment_terms: '30 days',
+                    governing_law: 'Germany',
+                    dispute: 'Arbitration'
+                },
+                { 
+                    contract: 'DataSky SaaS Agreement', 
+                    parties: 'DataSky Inc., NexaTech Solutions Ltd.', 
+                    signed: '2026-01-01', 
+                    expires: '2029-01-01', 
+                    status: 'Future',
+                    ip_ownership: 'N/A',
+                    scope: 'Non-exclusive, non-transferable, limited right for internal operations (max 25 users)',
+                    liability_cap: 'N/A',
+                    payment_terms: 'Contingent on performance audits',
+                    governing_law: 'California',
+                    dispute: 'Courts'
+                },
+                { 
+                    contract: 'NexaCloud SaaS Agreement', 
+                    parties: 'NexaCloud Ltd., InnovateTech S.A.', 
+                    signed: '2025-04-15', 
+                    expires: '2026-04-15', 
+                    status: 'Active',
+                    ip_ownership: 'N/A',
+                    scope: 'Non-exclusive, non-transferable, limited right for business purposes (max 100 users)',
+                    liability_cap: '€54,000.00',
+                    payment_terms: 'Monthly in advance',
+                    governing_law: 'Netherlands',
+                    dispute: 'Arbitration'
+                }
+            ],
+            commercial: [
+                { 
+                    contract: 'AlphaByte Software Development Agreement', 
+                    parties: 'AlphaByte Technologies B.V., Vertex Innovations Ltd.', 
+                    signed: '2025-05-10', 
+                    expires: '2028-05-10', 
+                    status: 'Active',
+                    value: '€100,000.00',
+                    payment_terms: 'Milestone-based payment schedule',
+                    scope: 'Perpetual, non-exclusive, non-transferable license for internal operations',
+                    ip_ownership: 'Developer owns all IP rights, grants limited rights to Client',
+                    subcontracting: 'Yes',
+                    governing_law: 'Netherlands'
+                },
+                { 
+                    contract: 'Skyline Cloud SaaS Agreement', 
+                    parties: 'Skyline Cloud Inc., TechSphere Ltd.', 
+                    signed: '2025-11-01', 
+                    expires: '2027-11-01', 
+                    status: 'Active',
+                    value: '$120,000.00',
+                    payment_terms: 'Four equal quarterly installments (15 days)',
+                    scope: 'Non-exclusive, non-transferable, limited right for internal operations (max 50 users)',
+                    ip_ownership: 'N/A',
+                    subcontracting: 'No',
+                    governing_law: 'New York'
+                },
+                { 
+                    contract: 'CloudNova SaaS Agreement', 
+                    parties: 'CloudNova Ltd., DataSys GmbH', 
+                    signed: '2025-09-01', 
+                    expires: '2027-09-01', 
+                    status: 'Active',
+                    value: '€60,000.00',
+                    payment_terms: 'Upon successful deployment and operational readiness (30 days)',
+                    scope: 'Non-exclusive, non-transferable, limited right for internal operations',
+                    ip_ownership: 'Customer retains data ownership, IP ownership not specified',
+                    subcontracting: 'No',
+                    governing_law: 'Denmark'
+                },
+                { 
+                    contract: 'QuantumCloud SaaS Agreement', 
+                    parties: 'QuantumCloud Ltd., FutureTech S.p.A.', 
+                    signed: '2025-07-01', 
+                    expires: '2027-07-01', 
+                    status: 'Active',
+                    value: '€50,000.00',
+                    payment_terms: '30 days',
+                    scope: 'Non-exclusive, non-transferable, limited right for internal operations, no sublicensing/reselling',
+                    ip_ownership: 'N/A',
+                    subcontracting: 'No',
+                    governing_law: 'Sweden'
+                },
+                { 
+                    contract: 'QuantumSoft Software Agreement', 
+                    parties: 'QuantumSoft Ltd., EuroTech Solutions S.A.', 
+                    signed: '2025-04-15', 
+                    expires: '2025-04-15', 
+                    status: 'Expired',
+                    value: '€80,000.00',
+                    payment_terms: 'Two installments (15 days)',
+                    scope: 'Non-exclusive, non-transferable, non-sublicensable license for internal business operations',
+                    ip_ownership: 'Licensor owns all IP rights, no rights transferred to Licensee',
+                    subcontracting: 'No',
+                    governing_law: 'Spain'
+                }
+            ]
+        };
+
+        // Load Contract Table
+        function loadContractTable(type) {
+            const container = document.getElementById('tableContainer');
+            const data = contractData[type];
+            
+            let html = '<input type="text" class="table-search" placeholder="Search contracts..." onkeyup="filterTable(this.value)">';
+            html += '<table class="contract-table" id="contractTable">';
+            
+            // Headers based on type
+            if (type === 'nda') {
+                html += '<thead><tr><th>Contract</th><th>Parties</th><th>Term</th><th>Dispute Resolution</th><th>Governing Law</th><th>Assignment Restriction</th><th>Info Destruction</th><th>Confidential Information Scope</th></tr></thead>';
+                html += '<tbody>';
+                data.forEach(row => {
+                    const statusClass = row.status === 'Active' ? 'status-active' : row.status === 'Expired' ? 'status-expired' : 'status-pending';
+                    html += `<tr>
+                        <td><strong>${row.contract}</strong><br><span class="${statusClass}" style="font-size: 0.8rem;">${row.status}</span></td>
+                        <td style="font-size: 0.9rem;">${row.parties}</td>
+                        <td style="font-size: 0.9rem;">${row.signed} - ${row.expires}</td>
+                        <td><span style="background: #e3f2fd; color: #1565c0; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem;">${row.dispute}</span></td>
+                        <td style="font-size: 0.9rem;">${row.governing_law}</td>
+                        <td style="text-align: center;"><span style="color: ${row.assignment === 'Yes' ? '#d32f2f' : '#388e3c'}; font-weight: 600;">${row.assignment}</span></td>
+                        <td style="text-align: center;"><span style="color: ${row.destruction === 'Yes' ? '#388e3c' : '#d32f2f'}; font-weight: 600;">${row.destruction}</span></td>
+                        <td style="font-size: 0.85rem; max-width: 300px;">${row.confidential_info}</td>
+                    </tr>`;
+                });
+            } else if (type === 'ip') {
+                html += '<thead><tr><th>Agreement</th><th>Parties</th><th>Term</th><th>IP Ownership</th><th>Scope of Use</th><th>Liability Cap</th><th>Payment Terms</th><th>Dispute Resolution</th></tr></thead>';
+                html += '<tbody>';
+                data.forEach(row => {
+                    const statusClass = row.status === 'Active' ? 'status-active' : row.status === 'Expired' ? 'status-expired' : 'status-pending';
+                    html += `<tr>
+                        <td><strong>${row.contract}</strong><br><span class="${statusClass}" style="font-size: 0.8rem;">${row.status}</span></td>
+                        <td style="font-size: 0.9rem;">${row.parties}</td>
+                        <td style="font-size: 0.9rem;">${row.signed} - ${row.expires}</td>
+                        <td style="font-size: 0.85rem; max-width: 250px;">${row.ip_ownership}</td>
+                        <td style="font-size: 0.85rem; max-width: 300px;">${row.scope}</td>
+                        <td style="font-weight: 600; color: #2563eb;">${row.liability_cap}</td>
+                        <td style="font-size: 0.9rem;">${row.payment_terms}</td>
+                        <td><span style="background: #e3f2fd; color: #1565c0; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem;">${row.dispute}</span></td>
+                    </tr>`;
+                });
+            } else if (type === 'commercial') {
+                html += '<thead><tr><th>Agreement</th><th>Parties</th><th>Term</th><th>Value</th><th>Payment Terms</th><th>Scope of Use</th><th>IP Ownership</th><th>Subcontracting</th></tr></thead>';
+                html += '<tbody>';
+                data.forEach(row => {
+                    const statusClass = row.status === 'Active' ? 'status-active' : row.status === 'Expired' ? 'status-expired' : 'status-pending';
+                    html += `<tr>
+                        <td><strong>${row.contract}</strong><br><span class="${statusClass}" style="font-size: 0.8rem;">${row.status}</span></td>
+                        <td style="font-size: 0.9rem;">${row.parties}</td>
+                        <td style="font-size: 0.9rem;">${row.signed} - ${row.expires}</td>
+                        <td style="font-weight: 600; color: #2563eb;">${row.value}</td>
+                        <td style="font-size: 0.9rem;">${row.payment_terms}</td>
+                        <td style="font-size: 0.85rem; max-width: 300px;">${row.scope}</td>
+                        <td style="font-size: 0.85rem; max-width: 250px;">${row.ip_ownership}</td>
+                        <td style="text-align: center;"><span style="color: ${row.subcontracting === 'Yes' ? '#f57c00' : '#388e3c'}; font-weight: 600;">${row.subcontracting}</span></td>
+                    </tr>`;
+                });
+            }
+            
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        // Table selector change handler
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableSelector = document.getElementById('tableSelector');
+            if (tableSelector) {
+                tableSelector.addEventListener('change', function() {
+                    loadContractTable(this.value);
+                });
+            }
+        });
+
+        // Filter table function
+        function filterTable(searchTerm) {
+            const table = document.getElementById('contractTable');
+            const rows = table.getElementsByTagName('tr');
+            
+            for (let i = 1; i < rows.length; i++) {
+                const row = rows[i];
+                const cells = row.getElementsByTagName('td');
+                let found = false;
+                
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].textContent.toLowerCase().includes(searchTerm.toLowerCase())) {
+                        found = true;
+                        break;
+                    }
+                }
+                
+                row.style.display = found ? '' : 'none';
+            }
+        }
+    </script>
+</body>
+</html>
