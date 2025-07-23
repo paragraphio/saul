@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Data Labeling Service - AI-Powered Legal Data Extraction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fafafa;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #e5e5e5;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+        
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+        
+        .hero-text .description {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+        
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #000;
+            color: #fff;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            background: #333;
+            transform: translateY(-1px);
+        }
+        
+        .cta-button-secondary {
+            display: inline-block;
+            background: transparent;
+            color: #000;
+            border: 2px solid #000;
+            padding: 0.9rem 2.4rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        
+        .cta-button-secondary:hover {
+            background: #000;
+            color: #fff;
+        }
+        
+        .hero-visual {
+            background: #f1f5f9;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        .hero-visual h3 {
+            font-size: 1.5rem;
+            color: #000;
+            margin-bottom: 2rem;
+        }
+        
+        /* Pipeline Flow Styles */
+        .pipeline-flow {
+            display: flex;
+            align-items: stretch;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .pipeline-stage {
+            flex: 1;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .pipeline-stage:last-child {
+            flex: 1.5;
+        }
+        
+        .stage-header {
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        .pipeline-arrow {
+            font-size: 1.5rem;
+            color: #2563eb;
+            font-weight: bold;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-self: center;
+            margin-top: 2rem;
+        }
+        
+        .document-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex: 1;
+            justify-content: center;
+        }
+        
+        .document-item {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 0.8rem;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+        
+        .document-item.processing {
+            border-color: #2563eb;
+            background: #eff6ff;
+            transform: scale(1.02);
+        }
+        
+        .doc-text {
+            line-height: 1.2;
+        }
+        
+        .processing-box {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            flex: 1;
+            justify-content: center;
+        }
+        
+        .process-step {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        
+        .process-step.active {
+            border-color: #2563eb;
+            background: #eff6ff;
+            color: #2563eb;
+        }
+        
+        .step-icon {
+            font-size: 1rem;
+        }
+        
+        .step-text {
+            font-weight: 500;
+        }
+        
+        .output-format {
+            background: #fff;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .format-sample {
+            text-align: left;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .format-header {
+            background: #f8f9fa;
+            padding: 0.8rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #374151;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .code-sample {
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.7rem;
+            color: #374151;
+            line-height: 1.4;
+            background: #fafafa;
+            flex: 1;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Pain Points Section */
+        .pain-points {
+            padding: 6rem 0;
+            background: #fef2f2;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #000;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .pain-points-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .pain-point {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+            text-align: center;
+        }
+        
+        .pain-point-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pain-point h3 {
+            font-size: 1.3rem;
+            color: #dc2626;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .pain-point p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Demo Section */
+        .demo {
+            padding: 6rem 0;
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+            margin-bottom: 4rem;
+        }
+        
+        .annotation-examples {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid #e9ecef;
+        }
+        
+        .annotation-examples h3 {
+            font-size: 1.5rem;
+            color: #000;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .annotation-example {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e9ecef;
+        }
+        
+        .contract-snippet {
+            background: #f1f5f9;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #374151;
+            margin-bottom: 1rem;
+            border-left: 4px solid #2563eb;
+        }
+        
+        .extracted-data {
+            margin-top: 1rem;
+        }
+        
+        .data-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .data-icon {
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .correct { color: #16a34a; }
+        .incorrect { color: #dc2626; }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 6rem 0;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-card {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+            text-align: center;
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.3rem;
+            color: #000;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .benefit-card p {
+            color: #666;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            background: #fff;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 2.5rem 2rem;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+            text-align: left;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 1rem;
+        }
+        
+        .feature-highlight {
+            background: #eff6ff;
+            border: 2px solid #2563eb;
+        }
+        
+        /* Data Visualization Section */
+        .data-viz {
+            padding: 6rem 0;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .table-container {
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+            overflow: hidden;
+            margin-bottom: 3rem;
+        }
+        
+        .table-header {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .table-header h3 {
+            font-size: 1.3rem;
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+        
+        .table-header p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+        
+        .data-table th,
+        .data-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .data-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .data-table tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .status-active { color: #16a34a; font-weight: 600; }
+        .status-pending { color: #d97706; font-weight: 600; }
+        .status-expired { color: #dc2626; font-weight: 600; }
+        
+        /* Newsletter Section */
+        .newsletter {
+            padding: 6rem 0;
+            background: #000;
+            color: #fff;
+            text-align: center;
+        }
+        
+        .newsletter h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter p {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 3rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .newsletter-form {
+            max-width: 400px;
+            margin: 0 auto;
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .newsletter input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 1px solid #333;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: #111;
+            color: #fff;
+            outline: none;
+        }
+        
+        .newsletter input::placeholder {
+            color: #666;
+        }
+        
+        .newsletter button {
+            padding: 1rem 2rem;
+            background: #fff;
+            color: #000;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .newsletter button:hover {
+            background: #f0f0f0;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 2rem 0;
+            background: #111;
+            color: #666;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content, .demo-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            
+            .pipeline-flow {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .pipeline-arrow {
+                transform: rotate(90deg);
+                font-size: 2rem;
+                margin-top: 0;
+                margin: 1rem 0;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .cta-group {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+            
+            .pipeline-arrow {
+                font-size: 2.5rem;
+                margin: 1.5rem 0;
+            }
+        }
+        
+        /* Animations */
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-in {
+            animation: slideIn 0.6s ease-out;
+        }
+        
+        @keyframes moveCard {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+            100% { transform: translateX(0); }
+        }
+        
+        .kanban-card.moving {
+            animation: moveCard 0.8s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>High-Quality Legal Training Data for Your ML Models</h1>
+                    <p class="subtitle">Get perfectly annotated legal documents with 99%+ accuracy. Our expert-in-the-loop platform delivers production-ready training datasets for LLMs, NLP models, and legal AI applications.</p>
+                    <div class="cta-group">
+                        <a href="#demo" class="cta-button">View Sample Dataset</a>
+                        <a href="#trial" class="cta-button-secondary">Get Training Data</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <h3>From Raw Documents to Training Data</h3>
+                    <div class="pipeline-flow" id="pipelineFlow">
+                        <div class="pipeline-stage">
+                            <div class="stage-header">📄 Input Documents</div>
+                                                         <div class="document-stack">
+                                 <div class="document-item raw-doc">
+                                     <div class="doc-text">Employment Contract<br><span style="font-size:0.7rem;color:#666;">Unstructured text</span></div>
+                                 </div>
+                                 <div class="document-item raw-doc">
+                                     <div class="doc-text">NDA Agreement<br><span style="font-size:0.7rem;color:#666;">Raw format</span></div>
+                                 </div>
+                                 <div class="document-item raw-doc">
+                                     <div class="doc-text">Service Contract<br><span style="font-size:0.7rem;color:#666;">Legal language</span></div>
+                                 </div>
+                             </div>
+                        </div>
+                        
+                        <div class="pipeline-arrow">→</div>
+                        
+                        <div class="pipeline-stage">
+                            <div class="stage-header">🤖 AI + Expert Processing</div>
+                            <div class="processing-box">
+                                <div class="process-step active" id="step1">
+                                    <div class="step-icon">🔍</div>
+                                    <div class="step-text">Entity Recognition</div>
+                                </div>
+                                <div class="process-step" id="step2">
+                                    <div class="step-icon">👨‍💼</div>
+                                    <div class="step-text">Expert Review</div>
+                                </div>
+                                <div class="process-step" id="step3">
+                                    <div class="step-icon">✅</div>
+                                    <div class="step-text">Quality Validation</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pipeline-arrow">→</div>
+                        
+                        <div class="pipeline-stage">
+                            <div class="stage-header">📊 Training Data Output</div>
+                            <div class="output-format">
+                                <div class="format-sample">
+                                    <div class="format-header">JSON Labels</div>
+                                                                         <div class="code-sample">
+{<br>
+&nbsp;&nbsp;"entities": [<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"text": "ACME Corp", "label": "PARTY"},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"text": "2025-01-15", "label": "DATE"},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"text": "$50,000", "label": "AMOUNT"},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"text": "5 years", "label": "TERM"},<br>
+&nbsp;&nbsp;&nbsp;&nbsp;{"text": "terminate", "label": "ACTION"}<br>
+&nbsp;&nbsp;],<br>
+&nbsp;&nbsp;"confidence": 0.99<br>}
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pain-points">
+        <div class="container">
+            <h2 class="section-title">The Training Data Challenge</h2>
+            <p class="section-subtitle">
+                Building legal AI requires high-quality annotated data. Getting it right is expensive, time-consuming, and critical for model performance.
+            </p>
+            
+            <div class="pain-points-grid">
+                <div class="pain-point">
+                    <div class="pain-point-icon">📊</div>
+                    <h3>Manual Annotation is Prohibitively Expensive</h3>
+                    <p>Legal experts charge $200-500/hour for document annotation. Training datasets for enterprise models can cost hundreds of thousands of dollars.</p>
+                </div>
+                
+                <div class="pain-point">
+                    <div class="pain-point-icon">⚠️</div>
+                    <h3>Poor Data Quality Kills Model Performance</h3>
+                    <p>Inconsistent annotations, missed entities, and incorrect labels lead to unreliable models. Your AI is only as good as your training data.</p>
+                </div>
+                
+                <div class="pain-point">
+                    <div class="pain-point-icon">🎯</div>
+                    <h3>Legal Domain Expertise is Rare</h3>
+                    <p>Most annotation services lack deep legal knowledge. They miss nuanced clauses, relationships, and domain-specific terminology that matter for your models.</p>
+                </div>
+                
+                <div class="pain-point">
+                    <div class="pain-point-icon">🇪🇺</div>
+                    <h3>EU: Each Jurisdiction Needs Local Experts</h3>
+                    <p>German contracts differ vastly from French or Dutch law. Building pan-European legal AI requires native experts in each jurisdiction - nearly impossible to coordinate at scale.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo" id="demo">
+        <div class="container">
+            <h2 class="section-title">Training Data Quality That Matters</h2>
+            <p class="section-subtitle">
+                Our expert-in-the-loop process delivers 99%+ annotation accuracy - the gold standard your models need to perform in production.
+            </p>
+            
+            <div class="demo-grid">
+                <div class="annotation-examples">
+                    <h3>Annotation Quality Examples</h3>
+                    
+                    <div class="annotation-example">
+                        <div class="contract-snippet">
+                            "The term of this Agreement shall commence on the Effective Date and shall continue for a period of five (5) years."
+                        </div>
+                        <div class="extracted-data">
+                            <div class="data-item">
+                                <span class="data-icon correct">✔</span>
+                                <span><strong>Start Date:</strong> Effective Date</span>
+                            </div>
+                            <div class="data-item">
+                                <span class="data-icon correct">✔</span>
+                                <span><strong>Term Length:</strong> 5 years</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="annotation-example">
+                        <div class="contract-snippet">
+                            "The confidentiality obligations of this Agreement shall survive the termination of this Agreement for a period of three (3) years."
+                        </div>
+                        <div class="extracted-data">
+                            <div class="data-item">
+                                <span class="data-icon correct">✔</span>
+                                <span><strong>Confidentiality Survival:</strong> 3 years</span>
+                            </div>
+                            <div class="data-item">
+                                <span class="data-icon incorrect">✖</span>
+                                <span><strong>Confidentiality Survival:</strong> 5 years</span>
+                            </div>
+                            <div style="margin-top: 0.5rem; font-size: 0.85rem; color: #666; font-style: italic;">
+                                ↳ This is incorrect - the contract clearly states a 3-year period.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="annotation-examples">
+                    <h3>Quality Control Process</h3>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <div style="background: #fff; padding: 1.5rem; border-radius: 8px; border: 1px solid #e9ecef;">
+                            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                <div style="background: #2563eb; color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; margin-right: 0.8rem;">1</div>
+                                <strong>AI Initial Extraction</strong>
+                            </div>
+                            <p style="color: #666; font-size: 0.9rem;">Advanced AI models perform initial data extraction with 85-92% baseline accuracy.</p>
+                        </div>
+                        
+                        <div style="background: #fff; padding: 1.5rem; border-radius: 8px; border: 1px solid #e9ecef;">
+                            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                <div style="background: #16a34a; color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; margin-right: 0.8rem;">2</div>
+                                <strong>Expert Review</strong>
+                            </div>
+                            <p style="color: #666; font-size: 0.9rem;">Legal experts validate and correct AI extractions, ensuring precision and context accuracy.</p>
+                        </div>
+                        
+                        <div style="background: #fff; padding: 1.5rem; border-radius: 8px; border: 1px solid #e9ecef;">
+                            <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                                <div style="background: #7c3aed; color: #fff; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 600; margin-right: 0.8rem;">3</div>
+                                <strong>Quality Assurance</strong>
+                            </div>
+                            <p style="color: #666; font-size: 0.9rem;">Final validation by senior legal experts achieves 99%+ accuracy for delivery.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Perfect Training Data for Legal AI</h2>
+            <p class="section-subtitle">
+                Get the high-quality annotated datasets you need to train robust legal AI models and LLM applications.
+            </p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🎯</div>
+                    <h3>Train Contract Analysis Models</h3>
+                    <p>Build AI that can extract key terms, dates, parties, and obligations from any legal document with enterprise-grade accuracy.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🧠</div>
+                    <h3>Fine-tune Legal LLMs</h3>
+                    <p>Create domain-specific language models that understand legal terminology, clauses, and document structures for your use case.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">📊</div>
+                    <h3>Build Classification Systems</h3>
+                    <p>Train models to automatically categorize documents, identify risk levels, and flag non-standard clauses at scale.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔗</div>
+                    <h3>Enable Entity Recognition</h3>
+                    <p>Develop NER models that can identify and extract legal entities, relationships, and structured data from complex documents.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Built for ML Engineers</h2>
+            <p class="section-subtitle">
+                Production-ready datasets with consistent schemas, quality metrics, and seamless integration with your ML pipeline.
+            </p>
+            
+            <div class="features-grid">
+                <div class="feature-card feature-highlight">
+                    <h3>🔌 REST API</h3>
+                    <p>Simple and intuitive endpoints for submitting documents and retrieving structured data. Full API documentation with code examples in Python, JavaScript, and cURL.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>⚙️ Customizable Schemas</h3>
+                    <p>Define the exact data points you need to extract from your documents. Support for complex nested structures and custom field types.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>👥 Expert-in-the-Loop Workflow</h3>
+                    <p>Our platform intelligently routes documents to a network of legal experts for review and annotation, ensuring the highest level of accuracy.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📊 Multiple Output Formats</h3>
+                    <p>Receive your data in JSON, CSV, XML, or your preferred format. Webhook support for real-time notifications when processing is complete.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🔒 Secure and Scalable</h3>
+                    <p>SOC 2 Type II certified with enterprise-grade security. Process millions of documents per day with 99.9% uptime SLA.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📈 Real-time Monitoring</h3>
+                    <p>Track processing status, quality metrics, and performance analytics through our dashboard and API endpoints.</p>
+                </div>
+                
+                <div class="feature-card feature-highlight">
+                    <h3>🇪🇺 Multi-Jurisdictional Expert Network</h3>
+                    <p>Native legal experts in 15+ EU jurisdictions. German employment law, French commercial contracts, Dutch privacy regulations - we have specialists for every European legal system.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="data-viz">
+        <div class="container">
+            <h2 class="section-title">Training Data Formats</h2>
+            <p class="section-subtitle">
+                Structured, labeled datasets in multiple formats - ready for training, validation, and testing your models.
+            </p>
+            
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Contract Terms Analysis</h3>
+                    <p>Key terms and dates extracted from commercial agreements</p>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Contract ID</th>
+                            <th>Counterparty</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Contract Value</th>
+                            <th>Auto-Renewal</th>
+                            <th>Termination Notice</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CT-2024-001</td>
+                            <td>Acme Corporation</td>
+                            <td>2024-01-15</td>
+                            <td>2026-01-15</td>
+                            <td>$250,000</td>
+                            <td>Yes (12 months)</td>
+                            <td>90 days</td>
+                            <td><span class="status-active">Active</span></td>
+                        </tr>
+                        <tr>
+                            <td>CT-2024-002</td>
+                            <td>TechFlow Solutions</td>
+                            <td>2024-03-01</td>
+                            <td>2025-03-01</td>
+                            <td>$75,000</td>
+                            <td>No</td>
+                            <td>30 days</td>
+                            <td><span class="status-pending">Renewal Pending</span></td>
+                        </tr>
+                        <tr>
+                            <td>CT-2023-045</td>
+                            <td>Global Industries Ltd</td>
+                            <td>2023-06-01</td>
+                            <td>2024-06-01</td>
+                            <td>$180,000</td>
+                            <td>Yes (6 months)</td>
+                            <td>60 days</td>
+                            <td><span class="status-expired">Expired</span></td>
+                        </tr>
+                        <tr>
+                            <td>CT-2024-003</td>
+                            <td>Innovation Partners</td>
+                            <td>2024-04-10</td>
+                            <td>2027-04-10</td>
+                            <td>$420,000</td>
+                            <td>Yes (24 months)</td>
+                            <td>120 days</td>
+                            <td><span class="status-active">Active</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Risk Assessment Matrix</h3>
+                    <p>Liability and risk clauses identified across contract portfolio</p>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Contract ID</th>
+                            <th>Liability Cap</th>
+                            <th>Indemnification</th>
+                            <th>Force Majeure</th>
+                            <th>Data Protection</th>
+                            <th>IP Ownership</th>
+                            <th>Risk Score</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CT-2024-001</td>
+                            <td>$500,000</td>
+                            <td>Mutual</td>
+                            <td>Standard</td>
+                            <td>GDPR Compliant</td>
+                            <td>Client Owned</td>
+                            <td style="color: #16a34a; font-weight: 600;">Low</td>
+                        </tr>
+                        <tr>
+                            <td>CT-2024-002</td>
+                            <td>Uncapped</td>
+                            <td>One-way (Us)</td>
+                            <td>Limited</td>
+                            <td>Basic</td>
+                            <td>Shared</td>
+                            <td style="color: #dc2626; font-weight: 600;">High</td>
+                        </tr>
+                        <tr>
+                            <td>CT-2023-045</td>
+                            <td>$100,000</td>
+                            <td>Mutual</td>
+                            <td>Standard</td>
+                            <td>CCPA Compliant</td>
+                            <td>Vendor Owned</td>
+                            <td style="color: #d97706; font-weight: 600;">Medium</td>
+                        </tr>
+                        <tr>
+                            <td>CT-2024-003</td>
+                            <td>$1,000,000</td>
+                            <td>Mutual</td>
+                            <td>Extended</td>
+                            <td>SOC 2 Type II</td>
+                            <td>Client Owned</td>
+                            <td style="color: #16a34a; font-weight: 600;">Low</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="table-container">
+                <div class="table-header">
+                    <h3>Payment Terms Analysis</h3>
+                    <p>Financial obligations and payment schedules extracted from agreements</p>
+                </div>
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Contract ID</th>
+                            <th>Payment Terms</th>
+                            <th>Late Fee</th>
+                            <th>Currency</th>
+                            <th>Invoice Frequency</th>
+                            <th>Early Payment Discount</th>
+                            <th>Next Payment Due</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CT-2024-001</td>
+                            <td>Net 30</td>
+                            <td>1.5% per month</td>
+                            <td>USD</td>
+                            <td>Monthly</td>
+                            <td>2% (10 days)</td>
+                            <td>2024-12-15</td>
+                        </tr>
+                        <tr>
+                            <td>CT-2024-002</td>
+                            <td>Net 45</td>
+                            <td>N/A</td>
+                            <td>USD</td>
+                            <td>Quarterly</td>
+                            <td>N/A</td>
+                            <td>2024-12-01</td>
+                        </tr>
+                        <tr>
+                            <td>CT-2023-045</td>
+                            <td>Net 15</td>
+                            <td>2% per month</td>
+                            <td>EUR</td>
+                            <td>Monthly</td>
+                            <td>3% (5 days)</td>
+                            <td>Contract Expired</td>
+                        </tr>
+                        <tr>
+                            <td>CT-2024-003</td>
+                            <td>Net 60</td>
+                            <td>1% per month</td>
+                            <td>USD</td>
+                            <td>Semi-Annual</td>
+                            <td>1.5% (7 days)</td>
+                            <td>2025-01-10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section id="newsletter" class="newsletter">
+        <div class="container">
+            <h2>Ready to Train Better Legal AI?</h2>
+            <p>Get a sample dataset and see the quality difference that expert annotation makes for your models.</p>
+            
+            <form class="newsletter-form" id="newsletter-form">
+                <input type="email" placeholder="Enter your work email" required id="email-input">
+                <button type="submit">Get Sample Dataset</button>
+            </form>
+            
+            <div style="margin-top: 2rem; font-size: 0.9rem; color: #999;">
+                <p>✓ Multiple annotation formats &nbsp;&nbsp; ✓ Quality metrics included</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Legal Data Labeling Service. SOC 2 Type II Certified. Transforming legal documents into actionable intelligence.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Newsletter form handling
+        document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email-input').value;
+            const button = this.querySelector('button');
+            const originalText = button.textContent;
+            
+            // Simple email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            // Simulate form submission
+            button.textContent = 'Preparing dataset...';
+            button.style.background = '#ccc';
+            
+            setTimeout(() => {
+                button.textContent = 'Dataset Sent ✓';
+                button.style.background = '#4ade80';
+                document.getElementById('email-input').value = '';
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.style.background = '#fff';
+                }, 3000);
+            }, 1500);
+        });
+
+        // Pipeline animation - continuous loop showing data processing flow
+        function runPipelineAnimation() {
+            const documents = document.querySelectorAll('.document-item');
+            const processSteps = document.querySelectorAll('.process-step');
+            const outputFormat = document.querySelector('.output-format');
+            
+            // Reset all states
+            documents.forEach(doc => doc.classList.remove('processing'));
+            processSteps.forEach(step => step.classList.remove('active'));
+            if (outputFormat) outputFormat.style.opacity = '0.3';
+            
+            // Step 1: Highlight first document being processed
+            setTimeout(() => {
+                if (documents[0]) {
+                    documents[0].classList.add('processing');
+                    if (processSteps[0]) processSteps[0].classList.add('active');
+                }
+            }, 500);
+            
+            // Step 2: Move to expert review
+            setTimeout(() => {
+                if (processSteps[0]) processSteps[0].classList.remove('active');
+                if (processSteps[1]) processSteps[1].classList.add('active');
+            }, 1500);
+            
+            // Step 3: Quality validation
+            setTimeout(() => {
+                if (processSteps[1]) processSteps[1].classList.remove('active');
+                if (processSteps[2]) processSteps[2].classList.add('active');
+            }, 2500);
+            
+            // Step 4: Generate output and process next document
+            setTimeout(() => {
+                if (outputFormat) outputFormat.style.opacity = '1';
+                documents[0].classList.remove('processing');
+                if (documents[1]) documents[1].classList.add('processing');
+                if (processSteps[2]) processSteps[2].classList.remove('active');
+                if (processSteps[0]) processSteps[0].classList.add('active');
+            }, 3500);
+            
+            // Step 5: Process second document through review
+            setTimeout(() => {
+                if (processSteps[0]) processSteps[0].classList.remove('active');
+                if (processSteps[1]) processSteps[1].classList.add('active');
+            }, 4500);
+            
+            // Step 6: Final validation and third document
+            setTimeout(() => {
+                if (processSteps[1]) processSteps[1].classList.remove('active');
+                if (processSteps[2]) processSteps[2].classList.add('active');
+                documents[1].classList.remove('processing');
+                if (documents[2]) documents[2].classList.add('processing');
+            }, 5500);
+            
+            // Step 7: Complete processing and restart loop
+            setTimeout(() => {
+                documents[2].classList.remove('processing');
+                if (processSteps[2]) processSteps[2].classList.remove('active');
+                
+                // Wait a moment then restart the animation
+                setTimeout(() => {
+                    runPipelineAnimation();
+                }, 2000);
+            }, 6500);
+        }
+        
+        // Start animation when page loads and run continuously
+        window.addEventListener('load', () => {
+            setTimeout(runPipelineAnimation, 2000);
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.pain-point, .benefit-card, .feature-card, .table-container').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html> 
